@@ -42,6 +42,18 @@ class Mortgage:
     def total_payout(self):
         return self.monthly_payment() * self.loan_months()
 
+    def monthly_payment_schedule(self):
+        monthly = self.monthly_payment()
+        balance = self.amount()
+        while True:
+            interest = round(balance * self.rate() * 1./MONTHS_IN_YEAR, 2)
+            if monthly >= balance + interest:
+                yield balance, interest
+                break
+            principle = monthly - interest
+            yield principle, interest
+            balance -= principle
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Mortgage Amortization Tools')
     parser.add_argument('-i', '--interest', default=6, dest='interest')
