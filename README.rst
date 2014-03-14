@@ -2,7 +2,7 @@ The mortgage package computes mortgage amortizations.  Generally in real life
 the principle and interest portions that this computes is not your entire
 mortgage payment.  Other items include escrow payments for taxes and insurance.
 
-[![Build Status](https://travis-ci.org/jbmohler/mortgage.png?branch=master)](https://travis-ci.org/jbmohler/mortgage)
+.. image:: https://travis-ci.org/jbmohler/mortgage.png?branch=master   :target: https://travis-ci.org/jbmohler/mortgage
 
 First one can see how much total payout a mortgage would take at arbitrary
 terms.
