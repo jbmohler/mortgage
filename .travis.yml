@@ -11,4 +11,4 @@ python:
 install:
   - pip install .
 # command to run tests
-script: py.test README.txt 
+script: py.test

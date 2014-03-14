@@ -31,7 +31,7 @@ class Mortgage:
 
     def monthly_payment(self):
         pre_amt = self.amount() * self.rate() / (float(MONTHS_IN_YEAR) * (1.-(1./self.month_growth()) ** self.loan_months()))
-        return float(int(pre_amt * 100))/100
+        return round(pre_amt+.005, 2)
 
     def total_value(self, m_payment):
         return m_payment / self.rate() * (float(MONTHS_IN_YEAR) * (1.-(1./self.month_growth()) ** self.loan_months()))
