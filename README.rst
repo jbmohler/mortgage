@@ -25,28 +25,28 @@ Or one can see bits and pieces of these computations.
 
 >>> m=mortgage.Mortgage(interest=0.04, amount=150000, months=180)
 >>> m.monthly_payment()
-1109.54
+Decimal('1109.54')
 >>> m.total_payout()
-199717.19999999998
+Decimal('199717.20')
 
 >>> # Show the principle and interest break-down for the first 6 months.
 >>> for index, payment in enumerate(m.monthly_payment_schedule()):
 ...     print(payment)
 ...     if index == 5: break
-(609.54, 500.0)
-(611.5699999999999, 497.97)
-(613.6099999999999, 495.93)
-(615.66, 493.88)
-(617.71, 491.83)
-(619.77, 489.77)
+(Decimal('609.54'), Decimal('500.00'))
+(Decimal('611.57'), Decimal('497.97'))
+(Decimal('613.61'), Decimal('495.93'))
+(Decimal('615.66'), Decimal('493.88'))
+(Decimal('617.71'), Decimal('491.83'))
+(Decimal('619.77'), Decimal('489.77'))
 
 >>> # Find the amount of principle in the first year.
 >>> import itertools
 >>> sum(month[0] for month in itertools.islice(m.monthly_payment_schedule(), 12))
-7450.0999999999985
+Decimal('7450.10')
 
 >>> # verify that we'll be done in 15 years (180 months)
 >>> payments = list(m.monthly_payment_schedule())
 >>> assert len(payments) == 180
 >>> payments[-1]
-(1103.770000000069, 3.68)
+(Decimal('1103.77'), Decimal('3.68'))

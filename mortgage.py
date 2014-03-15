@@ -3,8 +3,16 @@
 from __future__ import print_function
 import sys
 import argparse
+import decimal
 
 MONTHS_IN_YEAR = 12
+DOLLAR_QUANTIZE = decimal.Decimal('.01')
+
+def dollar(f, round=decimal.ROUND_CEILING):
+    """
+    This function rounds the passed float to 2 decimal places.
+    """
+    return decimal.Decimal(f).quantize(DOLLAR_QUANTIZE, rounding=round)
 
 class Mortgage:
     def __init__(self, interest, months, amount):
@@ -32,7 +40,7 @@ class Mortgage:
 
     def monthly_payment(self):
         pre_amt = self.amount() * self.rate() / (float(MONTHS_IN_YEAR) * (1.-(1./self.month_growth()) ** self.loan_months()))
-        return round(pre_amt+.005, 2)
+        return dollar(pre_amt, round=decimal.ROUND_CEILING)
 
     def total_value(self, m_payment):
         return m_payment / self.rate() * (float(MONTHS_IN_YEAR) * (1.-(1./self.month_growth()) ** self.loan_months()))
@@ -45,9 +53,11 @@ class Mortgage:
 
     def monthly_payment_schedule(self):
         monthly = self.monthly_payment()
-        balance = self.amount()
+        balance = dollar(self.amount())
+        rate = decimal.Decimal(self.rate()).quantize(decimal.Decimal('.000001'))
         while True:
-            interest = round(balance * self.rate() * 1./MONTHS_IN_YEAR, 2)
+            interest_unrounded = balance * rate * decimal.Decimal(1)/MONTHS_IN_YEAR
+            interest = dollar(interest_unrounded, round=decimal.ROUND_HALF_UP)
             if monthly >= balance + interest:
                 yield balance, interest
                 break
