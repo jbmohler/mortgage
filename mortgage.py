@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import sys
 import argparse
 
@@ -54,7 +55,18 @@ class Mortgage:
             yield principle, interest
             balance -= principle
 
-if __name__ == '__main__':
+def print_summary(m):
+    print('{0:>25s}:  {1:12.6f}'.format('Rate', m.rate()))
+    print('{0:>25s}:  {1:12.6f}'.format('Month Growth', m.month_growth()))
+    print('{0:>25s}:  {1:12.6f}'.format('APY', m.apy()))
+    print('{0:>25s}:  {1:12.0f}'.format('Payoff Years', m.loan_years()))
+    print('{0:>25s}:  {1:12.0f}'.format('Payoff Months', m.loan_months()))
+    print('{0:>25s}:  {1:12.2f}'.format('Amount', m.amount()))
+    print('{0:>25s}:  {1:12.2f}'.format('Monthly Payment', m.monthly_payment()))
+    print('{0:>25s}:  {1:12.2f}'.format('Annual Payment', m.annual_payment()))
+    print('{0:>25s}:  {1:12.2f}'.format('Total Payout', m.total_payout()))
+
+def main():
     parser = argparse.ArgumentParser(description='Mortgage Amortization Tools')
     parser.add_argument('-i', '--interest', default=6, dest='interest')
     parser.add_argument('-y', '--loan-years', default=30, dest='years')
@@ -67,12 +79,7 @@ if __name__ == '__main__':
     else:
         m = Mortgage(float(args.interest) / 100, float(args.years) * MONTHS_IN_YEAR, args.amount)
 
-    print '%*s:  %*.*f' % (25, 'Rate', 12, 6, m.rate())
-    print '%*s:  %*.*f' % (25, 'Month Growth', 12, 6, m.month_growth())
-    print '%*s:  %*.*f' % (25, 'APY', 12, 6, m.apy())
-    print '%*s:  %*.*f' % (25, 'Payoff Years', 12, 0, m.loan_years())
-    print '%*s:  %*.*f' % (25, 'Payoff Months', 12, 0, m.loan_months())
-    print '%*s:  %*.*f' % (25, 'Amount', 12, 2, m.amount())
-    print '%*s:  %*.*f' % (25, 'Monthly Payment', 12, 2, m.monthly_payment())
-    print '%*s:  %*.*f' % (25, 'Annual Payment', 12, 2, m.annual_payment())
-    print '%*s:  %*.*f' % (25, 'Total Payout', 12, 2, m.total_payout())
+    print_summary(m)
+
+if __name__ == '__main__':
+    main()
