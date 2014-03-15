@@ -68,15 +68,15 @@ class Mortgage:
             balance -= principle
 
 def print_summary(m):
-    print('{0:>25s}:  {1:12.6f}'.format('Rate', m.rate()))
-    print('{0:>25s}:  {1:12.6f}'.format('Month Growth', m.month_growth()))
-    print('{0:>25s}:  {1:12.6f}'.format('APY', m.apy()))
-    print('{0:>25s}:  {1:12.0f}'.format('Payoff Years', m.loan_years()))
-    print('{0:>25s}:  {1:12.0f}'.format('Payoff Months', m.loan_months()))
-    print('{0:>25s}:  {1:12.2f}'.format('Amount', m.amount()))
-    print('{0:>25s}:  {1:12.2f}'.format('Monthly Payment', m.monthly_payment()))
-    print('{0:>25s}:  {1:12.2f}'.format('Annual Payment', m.annual_payment()))
-    print('{0:>25s}:  {1:12.2f}'.format('Total Payout', m.total_payout()))
+    print('{0:>25s}:  {1:>12.6f}'.format('Rate', m.rate()))
+    print('{0:>25s}:  {1:>12.6f}'.format('Month Growth', m.month_growth()))
+    print('{0:>25s}:  {1:>12.6f}'.format('APY', m.apy()))
+    print('{0:>25s}:  {1:>12.0f}'.format('Payoff Years', m.loan_years()))
+    print('{0:>25s}:  {1:>12.0f}'.format('Payoff Months', m.loan_months()))
+    print('{0:>25s}:  {1:>12.2f}'.format('Amount', m.amount()))
+    print('{0:>25s}:  {1:>12.2f}'.format('Monthly Payment', m.monthly_payment()))
+    print('{0:>25s}:  {1:>12.2f}'.format('Annual Payment', m.annual_payment()))
+    print('{0:>25s}:  {1:>12.2f}'.format('Total Payout', m.total_payout()))
 
 def main():
     parser = argparse.ArgumentParser(description='Mortgage Amortization Tools')
