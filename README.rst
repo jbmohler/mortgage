@@ -31,7 +31,7 @@ Or one can see bits and pieces of these computations.
 
 >>> # Show the principle and interest break-down for the first 6 months.
 >>> for index, payment in enumerate(m.monthly_payment_schedule()):
-...     print payment
+...     print(payment)
 ...     if index == 5: break
 (609.54, 500.0)
 (611.5699999999999, 497.97)
@@ -48,5 +48,5 @@ Or one can see bits and pieces of these computations.
 >>> # verify that we'll be done in 15 years (180 months)
 >>> payments = list(m.monthly_payment_schedule())
 >>> assert len(payments) == 180
->>> print payments[-1]
+>>> payments[-1]
 (1103.770000000069, 3.68)
