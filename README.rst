@@ -91,9 +91,9 @@ of $564.13 instead of $898.09.
 
 >>> i30_2 = sum(month[1] for month in islice(m2.monthly_payment_schedule(), 360))
 >>> i15+i30_2
-Decimal('164738.60')
+Decimal('164738.59')
 
 That lower payment resulted in the mortgagee paying a mortgage for 45 years
-instead of 30 and increased the total interest from $123,311.97 to $164,738.60.
+instead of 30 and increased the total interest from $123,311.97 to $164,738.59.
 Is the pleasure of a lower payment really worth roughly $40,000 more interest
 expense?

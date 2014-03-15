@@ -12,13 +12,15 @@ def dollar(f, round=decimal.ROUND_CEILING):
     """
     This function rounds the passed float to 2 decimal places.
     """
-    return decimal.Decimal(f).quantize(DOLLAR_QUANTIZE, rounding=round)
+    if not isinstance(f, decimal.Decimal):
+        f = decimal.Decimal(str(f))
+    return f.quantize(DOLLAR_QUANTIZE, rounding=round)
 
 class Mortgage:
     def __init__(self, interest, months, amount):
         self._interest = float(interest)
         self._months = int(months)
-        self._amount = float(amount)
+        self._amount = dollar(amount)
 
     def rate(self):
         return self._interest
@@ -39,7 +41,7 @@ class Mortgage:
         return self._amount
 
     def monthly_payment(self):
-        pre_amt = self.amount() * self.rate() / (float(MONTHS_IN_YEAR) * (1.-(1./self.month_growth()) ** self.loan_months()))
+        pre_amt = float(self.amount()) * self.rate() / (float(MONTHS_IN_YEAR) * (1.-(1./self.month_growth()) ** self.loan_months()))
         return dollar(pre_amt, round=decimal.ROUND_CEILING)
 
     def total_value(self, m_payment):
