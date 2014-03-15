@@ -56,7 +56,7 @@ class Mortgage:
     def monthly_payment_schedule(self):
         monthly = self.monthly_payment()
         balance = dollar(self.amount())
-        rate = decimal.Decimal(self.rate()).quantize(decimal.Decimal('.000001'))
+        rate = decimal.Decimal(str(self.rate())).quantize(decimal.Decimal('.000001'))
         while True:
             interest_unrounded = balance * rate * decimal.Decimal(1)/MONTHS_IN_YEAR
             interest = dollar(interest_unrounded, round=decimal.ROUND_HALF_UP)
